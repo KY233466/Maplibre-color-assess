@@ -55,7 +55,7 @@ export default function layerPaintToZoomLevelColors(
   if (typeof style["fill-color"] === "string") {
     const zoomLevelColors = {};
     for (let i = layerMinZoom; i < layerMaxZoom + 1; i++) {
-        zoomLevelColors[i] = style["fill-color"];
+      zoomLevelColors[i] = style["fill-color"];
     }
 
     return [id, zoomLevelColors];
@@ -100,8 +100,25 @@ function getLayerColorsAtZooms(
     interpolateType = 'stops';
     fillColors = fillColor["stops"].flat();
   } else if (fillColor[0] === 'case') {
-    console.log("--", fillColor);
-    return null;
+    const conditionList = fillColor[1].slice(1);
+    // console.log("conditionList", conditionList, conditionList.length);
+    const colorList = fillColor.slice(2);
+
+    const result = {};
+    // console.log("colorList", colorList, colorList.length);
+
+    conditionList.map((condition, index) => {
+      const zoomLevelColors = {};
+      for (let i = minZoomLevel; i < maxZoomLevel + 1; i++) {
+        zoomLevelColors[i] = colorList[index];
+      }
+      result[index] = [[id, condition.toString()], zoomLevelColors];
+    })
+
+    // console.log(result);
+
+    // return null;
+    return result;
   } else {
     console.log("---", fillColor);
     throw new Error("unknown type", fillColor);

@@ -2,7 +2,7 @@
 
 import layerPaintToZoomLevelColors from "./layerPaintToZoomLevelColors.js";
 import extractStyle from "./extractStyle.js";
-import getNonComplimentPairsByType from "./checkContrast.js";
+import checkContrastBetweenPairs from "./checkContrast.js";
 import fs from "fs";
 import path from "path";
 
@@ -23,12 +23,15 @@ const colorBlindTypes = ["normal", "deuteranopia", "protanopia", "tritanopia"];
 
 extractStyle(filePath)
   .then((data) => {
-
-    console.log(data);
     Object.keys(data).forEach((key) => {
       data[key].forEach((item) => {
         const zoomLevelColors = layerPaintToZoomLevelColors(item, 2, 22);
-        if (zoomLevelColors) {
+        if (!Array.isArray(zoomLevelColors)) {
+          Object.keys(zoomLevelColors).forEach((key) => {
+            zoomLevelColorsArray.push(zoomLevelColors[key]);
+          })
+        }
+        else if (zoomLevelColors) {
           zoomLevelColorsArray.push(zoomLevelColors);
         }
       });
@@ -38,8 +41,7 @@ extractStyle(filePath)
       extractColorsInEachZoomLevel(zoomLevelColorsArray);
     const zoomLevelColorMap = extractZoomLevelColorMap(colorsInEachZoomLevel);
     const uniqueColors = getUniqueColors(colorsInEachZoomLevel);
-
-    const nonCompliantPairsByType = getNonComplimentPairsByType(
+    const nonCompliantPairsByType = checkContrastBetweenPairs(
       colorBlindTypes,
       uniqueColors
     );
@@ -77,16 +79,39 @@ function outPutAnalysis(nonCompliantPairsByType, zoomLevelColorMap) {
 function writeResultToTerminal(nonCompliantPairs, zoomLevelColorMap) {
   Object.keys(nonCompliantPairs).forEach((key) => {
     const pairs = nonCompliantPairs[key];
+
     pairs.map((p) => {
       const color1 = p[0];
       const color2 = p[1];
+      const name1 = zoomLevelColorMap[key][color1];
+      const name2 = zoomLevelColorMap[key][color2];
 
+      // For paint expressions that contains case
+      // For example, for layerID "water"
+      // "fill-color": [
+      //   "case",
+      //   [
+      //     "any",
+      //     ["==", ["get", "intermittent"], 1],
+      //     ["==", ["get", "brunnel"], "tunnel"]
+      //   ],
+      //   "hsl(211, 60%, 85%)",
+      //   "hsl(211, 50%, 85%)"
+      // ]
+      // would result in two colors depending on the cases
+      // so we don't want to mark this pair as need more contrast
+      if (Array.isArray(name1) && Array.isArray(name2)) {
+        if (name1[0][0] === name2[0][0]) {
+          return null;
+        }
+      }
+          
       console.log(
         `Zoom ${key}`,
-        zoomLevelColorMap[key][color1],
+        name1,
         [color1],
         "and",
-        zoomLevelColorMap[key][color2],
+        name2,
         [color2],
         "are too similar"
       );
@@ -113,9 +138,31 @@ function outputNoneCompliantPairs(nonCompliantPairs, zoomLevelColorMap) {
     pairs.map((p) => {
       const color1 = p[0];
       const color2 = p[1];
+      const name1 = zoomLevelColorMap[key][color1];
+      const name2 = zoomLevelColorMap[key][color2];
+
+      // For paint expressions that contains case
+      // For example, for layerID "water"
+      // "fill-color": [
+      //   "case",
+      //   [
+      //     "any",
+      //     ["==", ["get", "intermittent"], 1],
+      //     ["==", ["get", "brunnel"], "tunnel"]
+      //   ],
+      //   "hsl(211, 60%, 85%)",
+      //   "hsl(211, 50%, 85%)"
+      // ]
+      // would result in two colors depending on the cases
+      // so we don't want to mark this pair as need more contrast
+      if (Array.isArray(name1) && Array.isArray(name2)) {
+        if (name1[0][0] === name2[0][0]) {
+          return null;
+        }
+      }
 
       outputMessages.push(
-        `Zoom ${key} [ "${zoomLevelColorMap[key][color1]}" ] ${color1} and [ "${zoomLevelColorMap[key][color2]}" ] ${color2} are too similar\n`
+        `Zoom ${key} [ "${name1}" ] ${color1} and [ "${name2}" ] ${color2} are too similar\n`
       );
     });
   });
@@ -147,18 +194,18 @@ Output:
 }
 */
 function extractColorsInEachZoomLevel(layers) {
-  const result = {};
+    const result = {};
 
-  layers.forEach(([layerName, zoomLevels]) => {
-    Object.keys(zoomLevels).forEach((zoomLevel) => {
-      if (!result[zoomLevel]) {
-        result[zoomLevel] = {};
-      }
-      result[zoomLevel][layerName] = zoomLevels[zoomLevel];
+    layers.forEach(([layerName, zoomLevels]) => {
+      Object.keys(zoomLevels).forEach((zoomLevel) => {
+        if (!result[zoomLevel]) {
+          result[zoomLevel] = [];
+        }
+        result[zoomLevel].push([layerName, zoomLevels[zoomLevel]]);
+      });
     });
-  });
 
-  return result;
+    return result;
 }
 
 /*
@@ -184,12 +231,14 @@ function extractZoomLevelColorMap(input) {
   for (const [zoom, layers] of Object.entries(input)) {
     const colorMap = new Map();
 
-    for (const [layer, color] of Object.entries(layers)) {
+    layers.map((l) => {
+      const layerName = l[0];
+      const color = l[1];
       if (!colorMap.has(color)) {
         colorMap.set(color, []);
       }
-      colorMap.get(color).push(layer);
-    }
+      colorMap.get(color).push(layerName);
+    })
 
     result[parseInt(zoom, 10)] = Object.fromEntries(colorMap);
   }
@@ -198,6 +247,22 @@ function extractZoomLevelColorMap(input) {
 }
 
 /*
+New InPut: 
+{
+  '2': [
+    [ 'background', 'hsl(30, 44%, 96%)' ],
+    [ 'landuse_hospital', '#FFDDDD' ],
+    [ [Array], 'hsl(211, 60%, 85%)' ],
+    [ [Array], 'hsl(211, 50%, 85%)' ]
+  ],
+  '3': [
+    [ 'background', 'hsl(30, 44%, 96%)' ],
+    [ 'landuse_hospital', '#FFDDDD' ],
+    [ [Array], 'hsl(211, 60%, 85%)' ],
+    [ [Array], 'hsl(211, 50%, 85%)' ]
+  ]
+}
+
 Output:
 [
   [ 0, [ '#FFC7E2', '#ff0000', '#FFDDDD' ] ],
@@ -206,9 +271,8 @@ Output:
 ]
 */
 function getUniqueColors(data) {
-  return Object.entries(data).map(([zoomLevel, colorsObj]) => {
-    const uniqueColors = [...new Set(Object.values(colorsObj))];
-
+  return Object.entries(data).map(([zoomLevel, colorsArray]) => {
+    const uniqueColors = [...new Set(colorsArray.map((c) => c[1]))];
     return [parseInt(zoomLevel), uniqueColors];
   });
 }

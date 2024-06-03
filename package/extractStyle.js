@@ -61,7 +61,6 @@ export default function extractStyle(filename) {
 
         if (layer.paint) {
           targetProperties.forEach((prop) => {
-            console.log(prop);
             if (layer.paint[prop]) {
               paint[prop] = layer.paint[prop];
               // TODO temporary fix.
