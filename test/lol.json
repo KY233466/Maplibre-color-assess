@@ -1,0 +1,54 @@
+Zoom 2 [ "water" ] rgb(27 ,27 ,29) and [ "landuse_park" ] rgb(32,32,32) are too similar
+Zoom 2 [ "landcover_ice_shelf,road_area_pier" ] rgb(12,12,12) and [ "landcover_glacier" ] hsl(0, 1%, 2%) are too similar
+Zoom 2 [ "landcover_ice_shelf,road_area_pier" ] rgb(12,12,12) and [ "landuse_residential" ] hsl(0, 2%, 5%) are too similar
+Zoom 2 [ "landcover_glacier" ] hsl(0, 1%, 2%) and [ "landuse_residential" ] hsl(0, 2%, 5%) are too similar
+Zoom 3 [ "water" ] rgb(27 ,27 ,29) and [ "landuse_park" ] rgb(32,32,32) are too similar
+Zoom 3 [ "landcover_ice_shelf,road_area_pier" ] rgb(12,12,12) and [ "landcover_glacier" ] hsl(0, 1%, 2%) are too similar
+Zoom 3 [ "landcover_ice_shelf,road_area_pier" ] rgb(12,12,12) and [ "landuse_residential" ] hsl(0, 2%, 5%) are too similar
+Zoom 3 [ "landcover_glacier" ] hsl(0, 1%, 2%) and [ "landuse_residential" ] hsl(0, 2%, 5%) are too similar
+Zoom 4 [ "water" ] rgb(27 ,27 ,29) and [ "landuse_park" ] rgb(32,32,32) are too similar
+Zoom 4 [ "landcover_ice_shelf,road_area_pier" ] rgb(12,12,12) and [ "landcover_glacier" ] hsl(0, 1%, 2%) are too similar
+Zoom 4 [ "landcover_ice_shelf,road_area_pier" ] rgb(12,12,12) and [ "landuse_residential" ] hsl(0, 2%, 5%) are too similar
+Zoom 4 [ "landcover_glacier" ] hsl(0, 1%, 2%) and [ "landuse_residential" ] hsl(0, 2%, 5%) are too similar
+Zoom 5 [ "water" ] rgb(27 ,27 ,29) and [ "landuse_park" ] rgb(32,32,32) are too similar
+Zoom 5 [ "landcover_ice_shelf,road_area_pier" ] rgb(12,12,12) and [ "landcover_glacier" ] hsl(0, 1%, 2%) are too similar
+Zoom 5 [ "landcover_ice_shelf,road_area_pier" ] rgb(12,12,12) and [ "landuse_residential" ] hsl(0, 2%, 5%) are too similar
+Zoom 5 [ "landcover_glacier" ] hsl(0, 1%, 2%) and [ "landuse_residential" ] hsl(0, 2%, 5%) are too similar
+Zoom 6 [ "water" ] rgb(27 ,27 ,29) and [ "landuse_park" ] rgb(32,32,32) are too similar
+Zoom 6 [ "landcover_ice_shelf,road_area_pier" ] rgb(12,12,12) and [ "landcover_glacier" ] hsl(0, 1%, 2%) are too similar
+Zoom 6 [ "landcover_ice_shelf,road_area_pier" ] rgb(12,12,12) and [ "landuse_residential" ] hsl(0, 2%, 5%) are too similar
+Zoom 6 [ "landcover_glacier" ] hsl(0, 1%, 2%) and [ "landuse_residential" ] hsl(0, 2%, 5%) are too similar
+Zoom 7 [ "water" ] rgb(27 ,27 ,29) and [ "landuse_park" ] rgb(32,32,32) are too similar
+Zoom 7 [ "landcover_ice_shelf,road_area_pier" ] rgb(12,12,12) and [ "landcover_glacier" ] hsl(0, 1%, 2%) are too similar
+Zoom 7 [ "landcover_ice_shelf,road_area_pier" ] rgb(12,12,12) and [ "landuse_residential" ] hsl(0, 2%, 5%) are too similar
+Zoom 7 [ "landcover_glacier" ] hsl(0, 1%, 2%) and [ "landuse_residential" ] hsl(0, 2%, 5%) are too similar
+Zoom 8 [ "water" ] rgb(27 ,27 ,29) and [ "landuse_park" ] rgb(32,32,32) are too similar
+Zoom 8 [ "landcover_ice_shelf,road_area_pier" ] rgb(12,12,12) and [ "landcover_glacier" ] hsl(0, 1%, 2%) are too similar
+Zoom 8 [ "landcover_ice_shelf,road_area_pier" ] rgb(12,12,12) and [ "landuse_residential" ] hsl(0, 2%, 5%) are too similar
+Zoom 8 [ "landcover_glacier" ] hsl(0, 1%, 2%) and [ "landuse_residential" ] hsl(0, 2%, 5%) are too similar
+Zoom 9 [ "water" ] rgb(27 ,27 ,29) and [ "landuse_park" ] rgb(32,32,32) are too similar
+Zoom 9 [ "landuse_residential" ] hsl(0, 2%, 5%) and [ "road_area_pier" ] rgb(12,12,12) are too similar
+Zoom 10 [ "water" ] rgb(27 ,27 ,29) and [ "landcover_wood,landuse_park" ] rgb(32,32,32) are too similar
+Zoom 11 [ "water" ] rgb(27 ,27 ,29) and [ "landcover_wood,landuse_park" ] rgb(32,32,32) are too similar
+Zoom 12 [ "water" ] rgb(27 ,27 ,29) and [ "landcover_wood,landuse_park" ] rgb(32,32,32) are too similar
+Zoom 12 [ "building" ] rgb(10,10,10) and [ "road_area_pier" ] rgb(12,12,12) are too similar
+Zoom 13 [ "water" ] rgb(27 ,27 ,29) and [ "landcover_wood,landuse_park" ] rgb(32,32,32) are too similar
+Zoom 13 [ "building" ] rgb(10,10,10) and [ "road_area_pier" ] rgb(12,12,12) are too similar
+Zoom 14 [ "water" ] rgb(27 ,27 ,29) and [ "landcover_wood,landuse_park" ] rgb(32,32,32) are too similar
+Zoom 14 [ "building" ] rgb(10,10,10) and [ "road_area_pier" ] rgb(12,12,12) are too similar
+Zoom 15 [ "water" ] rgb(27 ,27 ,29) and [ "landcover_wood,landuse_park" ] rgb(32,32,32) are too similar
+Zoom 15 [ "building" ] rgb(10,10,10) and [ "road_area_pier" ] rgb(12,12,12) are too similar
+Zoom 16 [ "water" ] rgb(27 ,27 ,29) and [ "landcover_wood,landuse_park" ] rgb(32,32,32) are too similar
+Zoom 16 [ "building" ] rgb(10,10,10) and [ "road_area_pier" ] rgb(12,12,12) are too similar
+Zoom 17 [ "water" ] rgb(27 ,27 ,29) and [ "landcover_wood,landuse_park" ] rgb(32,32,32) are too similar
+Zoom 17 [ "building" ] rgb(10,10,10) and [ "road_area_pier" ] rgb(12,12,12) are too similar
+Zoom 18 [ "water" ] rgb(27 ,27 ,29) and [ "landcover_wood,landuse_park" ] rgb(32,32,32) are too similar
+Zoom 18 [ "building" ] rgb(10,10,10) and [ "road_area_pier" ] rgb(12,12,12) are too similar
+Zoom 19 [ "water" ] rgb(27 ,27 ,29) and [ "landcover_wood,landuse_park" ] rgb(32,32,32) are too similar
+Zoom 19 [ "building" ] rgb(10,10,10) and [ "road_area_pier" ] rgb(12,12,12) are too similar
+Zoom 20 [ "water" ] rgb(27 ,27 ,29) and [ "landcover_wood,landuse_park" ] rgb(32,32,32) are too similar
+Zoom 20 [ "building" ] rgb(10,10,10) and [ "road_area_pier" ] rgb(12,12,12) are too similar
+Zoom 21 [ "water" ] rgb(27 ,27 ,29) and [ "landcover_wood,landuse_park" ] rgb(32,32,32) are too similar
+Zoom 21 [ "building" ] rgb(10,10,10) and [ "road_area_pier" ] rgb(12,12,12) are too similar
+Zoom 22 [ "water" ] rgb(27 ,27 ,29) and [ "landcover_wood,landuse_park" ] rgb(32,32,32) are too similar
+Zoom 22 [ "building" ] rgb(10,10,10) and [ "road_area_pier" ] rgb(12,12,12) are too similar
